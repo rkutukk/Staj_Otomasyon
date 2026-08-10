@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Staj Başvuru Sistemi</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+
+<body>
+
+    <div class="header">
+
+        <img
+            src="{{ url_for('static', filename='images/kou-logo.png') }}"
+            class="logo"
+            alt="Kocaeli Üniversitesi"
+        >
+
+        <h1>Staj Başvuru Sistemi</h1>
+
+    </div>
+
+
+    <div class="login-selection">
+
+        <a
+            href="{{ url_for('academic_login') }}"
+            class="selection-button"
+        >
+            🎓 Akademik Giriş
+        </a>
+
+
+        <a
+            href="{{ url_for('student_login') }}"
+            class="selection-button"
+        >
+            👤 Öğrenci Girişi
+        </a>
+
+    </div>
+
+
+    <div class="main-content">
+
+        <h2>Staj Başvuru Sistemine Hoş Geldiniz</h2>
+
+        <p>
+            Devam etmek için yukarıdan kullanıcı türünüzü seçiniz.
+        </p>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Öğrenci Girişi</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body class="login-page">
+
+    <div class="login-card">
+
+        <img
+            src="{{ url_for('static', filename='images/kou-logo.png') }}"
+            class="login-logo"
+            alt="Kocaeli Üniversitesi"
+        >
+
+        <h2>
+            Staj Başvuru Sistemi / Öğrenci
+        </h2>
+
+
+        {% if error %}
+
+            <div class="error-message">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="username"
+                required
+            >
+
+
+            <input
+                type="password"
+                name="password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                GİRİŞ
+            </button>
+
+        </form>
+
+
+        <a
+            href="{{ url_for('index') }}"
+            class="back-link"
+        >
+            ← Ana Sayfaya Dön
+        </a>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <title>Staj Başlangıç Başvurusu</title>
+</head>
+
+<body>
+    <div class="form-card">
+    <h1>Staj Başlangıç Başvurusu</h1>
+
+    <form>
+        <hr>
+        <h2>Öğrenci Bilgileri</h2>
+        <label for="name">Ad Soyad</label>
+        <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Yanıtınız"
+        required>
+
+        <label for="student_number">Okul Numarası</label>
+
+        <input
+        type="text"
+        id="student_number"
+        name="student_number"
+        placeholder="Yanıtınız"
+        required>
+        
+        <label for="tc_no">T.C. Kimlik Numarası</label>
+        <input
+        type="text"
+        id="tc_no"
+        name="tc_no"
+        maxlength="11"
+        placeholder="Yanıtınız"
+        required>
+        
+        <label for="birth_date">Doğum Tarihi</label>
+        <input
+        type="date"
+        id="birth_date"
+        name="birth_date"
+        required>
+        <hr>
+        <h2>Staj Bilgileri</h2>
+        <label for="start_date">Staj Başlangıç Tarihi</label>
+        <input 
+        type="date"
+        id="start_date"
+        name="start_date"
+        required>
+
+        <label for="end_date">Staj Bitiş Tarihi</label>
+        
+        <input 
+        type="date" 
+        name="end_date" 
+        id="end_date" 
+        required>
+
+        <label for="insurance_start">Sigorta Başlangıç Tarihi</label>
+        <input 
+        type="date" 
+        id="insurance_start" 
+        name="insurance_start" 
+        required>
+
+        <label for="day_count">Staj Yapılacağı Gün Sayısı</label>
+        
+        <input 
+        type="text" 
+        name="day_count" 
+        id="day_count"
+        min="1" 
+        placeholder="Yanıtınız" 
+        required>
+        
+        <hr>
+        <h2>Diğer Bilgiler</h2>
+        <label for="">Sağlık Yardım Statüsü</label>
+        
+        <p>
+        Ek-16 formunda öğrencinin işaretlediği rakam seçilecektir.
+        </p>
+       
+        <select 
+        name="health_status" 
+        id="health_status" 
+        required>
+        <option value="">seçiniz</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+
+        </select>
+        
+        
+        <label for="abroad">Yurt Dışı Stajı Mı?</label>
+        
+        <select  name="abroad" id="abroad" required>
+        
+        <option value="">seçiniz</option>
+        <option value="evet">evet</option>
+        <option value="hayır">hayır</option>
+        </select>
+
+        <label for="salary">Ücret Alıyor Mu?</label>
+        
+        <select name="salary" id="salary" required>
+            <option value="">seçiniz</option>
+            <option value="evet">evet</option>
+            <option value="hayır">hayır</option>
+        </select>
+
+         <hr>
+         <h2>İşletme Bilgileri</h2>
+
+        <label for="company_name">İşletme Adı</label>
+        <p>En fazla 60 karakter(ör:kocaeli üniversitesi)</p>
+        <input 
+        type="text" 
+        name="company_name" 
+        id="company_name" 
+        maxlength="60" 
+        placeholder="Yanıtınız"
+        required>
+
+        <label for="company_address">İşletme Adresi</label>
+        <p>en fazla 60 karakter (ör: koü umuttepe yerleşkesi izmit/kocaeli)</p>
+        <textarea 
+        id="company_address" 
+        name="company_address" 
+        rows="4"
+        maxlength="60" 
+        placeholder="Yanıtınız" 
+        required>
+        </textarea>
+        
+        <label for="employee_count">İşletmede Çalışan Personel Sayısı</label>
+        <input type="number" id="employee_count" name="employee_count" min="1" placeholder="Yanıtınız" required>
+
+        <label for="company_phone">İşletme Telefon</label>
+        <p>Örnek:2623033560</p>
+        <input type="tel" name="company_phone" id="company_phone"placeholder="5XXXXXXXXX" required>
+
+        <label for="tax_number">İşletme Vergi Numarası</label>
+        <p>En fazla 60 karakter (Ör:5650047025)</p>
+        <input type="text" name="tax_number" id="tax_number" maxlength="60" placeholder="Yanıtınız ">
+
+        <label for="iban">İşletme IBAN</label>
+        <p>Stajyer staj süresince herhangi bir ücret alacaksa girilmesi zorunlu alandır. Başında TR olacak şekilde boşluk bırakılmadan 26 haneli yazılmalıdır!! Ücretsiz staj yapılacaksa boş bırakılmalıdır!!</p>
+        <input type="text" name="iban" id="iban"placeholder="Yanıtınız">
+
+        <label for="goverment_support">Talep Edilen Devlet Katkısı Tutarı</label>
+        <input type="text"id="goverment_support" name="goverment_support" step="0.01" placeholder="Yanıtınız">
+
+        <hr>
+
+        <h2>Belgeler</h2>
+        <label for="ek16"> EK-16 Belgesini Yükleyiniz (PDF)</label>
+        <input type="file" id="ek16" name="ek16" accept=".pdf" required>
+
+        <br><br>
+
+        <button type="submit">Başvuruyu Gönder</button>
+</form>
+</div>
+</body>
+
+</html>

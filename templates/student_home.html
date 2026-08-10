@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Öğrenci Paneli</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="header small-header">
+
+        <img
+            src="{{ url_for('static', filename='images/kou-logo.png') }}"
+            class="logo"
+            alt="Kocaeli Üniversitesi"
+        >
+
+        <h1>Staj Başvuru Sistemi</h1>
+
+    </div>
+
+
+    <div class="student-panel">
+
+        <h2>Öğrenci Paneli</h2>
+
+        <p>
+            Yapmak istediğiniz işlemi seçiniz.
+        </p>
+
+
+        <a href="{{ url_for('application') }}">
+
+           <button class="process-button">
+               Staj Başlangıç Başvurusu
+           </button>
+
+        </a>
+
+
+        <button
+            class="process-button disabled-button"
+            disabled
+        >
+            Staj Bitiş İşlemleri
+        </button>
+
+    </div>
+
+</body>
+
+</html>

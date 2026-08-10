@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+
+
+/* =========================
+   ANA SAYFA HEADER
+========================= */
+
+.header {
+    background-color: #45af50;
+
+    width: 100%;
+    padding: 25px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.logo {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+
+    margin-bottom: 15px;
+}
+
+
+.header h1 {
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+
+
+/* =========================
+   GİRİŞ SEÇİM ALANI
+========================= */
+
+.login-selection {
+    width: 100%;
+
+    background-color: #338f3c;
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    padding: 22px;
+}
+
+
+.selection-button {
+    width: 260px;
+
+    padding: 17px 30px;
+
+    background-color: white;
+
+    color: #32933c;
+
+    text-decoration: none;
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    border-radius: 6px;
+
+    transition: 0.2s;
+}
+
+
+.selection-button:hover {
+    background-color: #eeeeee;
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================
+   ANA SAYFA İÇERİĞİ
+========================= */
+
+.main-content {
+    text-align: center;
+    padding-top: 80px;
+}
+
+
+.main-content h2 {
+    color: #3da448;
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+.main-content p {
+    color: #666;
+    font-size: 17px;
+}
+
+
+
+/* =========================
+   GİRİŞ SAYFALARI
+========================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #f5f5f5;
+}
+
+
+.login-card {
+    width: 650px;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+
+    text-align: center;
+}
+
+
+.login-logo {
+    width: 110px;
+    margin-bottom: 25px;
+}
+
+
+.login-card h2 {
+    font-size: 25px;
+
+    color: #333;
+
+    margin-bottom: 30px;
+}
+
+
+
+/* INPUT */
+
+.login-card input {
+    width: 100%;
+
+    padding: 15px;
+
+    margin-bottom: 18px;
+
+    font-size: 16px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+
+    background-color: #eaf1fb;
+
+    outline: none;
+}
+
+
+.login-card input:focus {
+    border-color: #3fa34d;
+}
+
+
+
+/* GİRİŞ BUTONU */
+
+.login-button {
+    width: 100%;
+
+    padding: 14px;
+
+    background-color: #359641;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.login-button:hover {
+    background-color: #267d32;
+}
+
+
+
+/* GERİ DÖN */
+
+.back-link {
+    display: inline-block;
+
+    margin-top: 22px;
+
+    color: #378e41;
+
+    text-decoration: none;
+}
+
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+
+/* HATA */
+
+.error-message {
+    background-color: #f8d7da;
+
+    color: #842029;
+
+    padding: 12px;
+
+    margin-bottom: 20px;
+
+    border-radius: 5px;
+}
+
+
+
+/* =========================
+   ÖĞRENCİ PANELİ
+========================= */
+
+.small-header {
+    padding: 15px;
+}
+
+
+.small-header .logo {
+    width: 75px;
+    height: 75px;
+}
+
+
+.student-panel {
+    width: 700px;
+
+    margin: 70px auto;
+
+    padding: 40px;
+
+    background-color: white;
+
+    border-radius: 8px;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+}
+
+
+.student-panel h2 {
+    color: #32933c;
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+
+.student-panel p {
+    color: #666;
+
+    margin-bottom: 30px;
+}
+
+
+.process-button {
+    width: 100%;
+
+    padding: 17px;
+
+    margin-bottom: 15px;
+
+    background-color: #359641;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+
+.process-button:hover {
+    background-color: #297d34;
+}
+
+
+.disabled-button {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+
+
+/* =========================
+   TELEFON UYUMU
+========================= */
+
+@media (max-width: 700px) {
+
+    .login-selection {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .selection-button {
+        width: 90%;
+    }
+
+
+    .login-card {
+        width: 90%;
+        padding: 25px;
+    }
+
+
+    .student-panel {
+        width: 90%;
+    }
+
+
+    .header h1 {
+        font-size: 24px;
+    }
+}
+    .form-card{
+        width: 850px;
+        margin: 40px auto;
+        background: white;
+        padding: 35px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
+    }
+    .form-card h1 {
+        text-align: center;
+        color: #2e8b57;
+        margin-bottom: 30px;
+    }
+    .form-card label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-top: 15px;
+
+    margin-bottom: 5px;
+
+    }
+
+    .form-card input,
+    .form-card select,
+    .form-card textarea {
+
+    width: 50%;
+
+    padding: 10px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    margin-bottom: 15px;
+
+    box-sizing: border-box;
+ }   
+.form-card button {
+    width: 30%;
+    padding: 13px;
+    margin-top: 20px;
+
+    background-color: #2E8B57;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+.form-card button:hover {
+    background-color: #247346;
+}
+
+
+    
