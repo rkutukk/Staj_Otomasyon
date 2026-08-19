@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Akademik Personel Paneli</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body class="academic-page">
+
+    <div class="academic-layout">
+
+        <!-- SOL MENÜ -->
+
+        <aside class="academic-sidebar">
+
+            <div class="academic-logo">
+                Staj Başvuru Sistemi
+            </div>
+
+            <button class="sidebar-button active">
+                📥 Tüm Başvurular
+            </button>
+
+            <button class="sidebar-button">
+                ⏳ Onay Bekleyenler
+            </button>
+
+            <button class="sidebar-button">
+                ✓ Onaylananlar
+            </button>
+
+            <button class="sidebar-button">
+                ✕ Reddedilenler
+            </button>
+
+
+            <a
+                href="{{ url_for('index') }}"
+                class="sidebar-logout"
+            >
+                ← Çıkış Yap
+            </a>
+
+        </aside>
+
+
+        <!-- ANA ALAN -->
+
+        <main class="academic-main">
+
+            <!-- ÜST BAR -->
+
+            <header class="academic-header">
+
+                <div>
+                    <h1>Staj Başvuruları</h1>
+
+                    <span class="application-count">
+                        Tüm başvurular
+                    </span>
+                </div>
+
+
+                <div class="header-actions">
+
+                    <button
+                        class="refresh-button"
+                        title="Başvuruları Yenile"
+                    >
+                        ↻
+                    </button>
+
+                    <button class="page-button">
+                        ‹
+                    </button>
+
+                    <span class="page-number">
+                        1-50
+                    </span>
+
+                    <button class="page-button">
+                        ›
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- BAŞVURU LİSTESİ -->
+
+            <section class="application-list">
+
+ {% for application in applications %}
+
+        <a href="#" class="application-row {% if application['is_read'] == 0 %}unread{% endif %}">
+
+            <div class="application-name">
+                {{ application['name'] }}
+            </div>
+
+            <div class="application-subject">
+                Staj Başlangıç Başvurusu
+            </div>
+
+            <div class="application-date">
+                {% if application['submitted_at'] %}
+                    {{ application['submitted_at'][:16] }}
+                {% else %}
+                    Tarih yok
+                {% endif %}
+            </div>
+
+        </a>
+
+    {% endfor %}
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

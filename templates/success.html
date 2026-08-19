@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Başvuru Başarılı</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="success-container">
+
+        <div class="success-card">
+
+            <div class="success-icon">✓</div>
+
+            <h1>Başvurunuz Başarıyla Alındı</h1>
+
+            <p>
+                Staj başlangıç başvurunuz sisteme başarıyla kaydedilmiştir.
+            </p>
+
+            <a href="{{ url_for('student_home') }}" class="success-button">
+                Öğrenci Paneline Dön
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

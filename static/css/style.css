@@ -429,6 +429,314 @@ body {
 .form-card button:hover {
     background-color: #247346;
 }
+.success-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.success-card {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 45px 35px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #2e7d32;
+    color: white;
+    font-size: 45px;
+    line-height: 70px;
+    font-weight: bold;
+}
+
+.success-card h1 {
+    margin-bottom: 15px;
+    color: #2e7d32;
+}
+
+.success-card p {
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.success-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #2e7d32;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.success-button:hover {
+    background: #1b5e20;
+}
+
+/* =========================================
+   AKADEMİK PERSONEL BAŞVURU PANELİ
+   YEŞİL TEMA
+   ========================================= */
+
+.academic-page {
+    margin: 0;
+    background: #f4f8f5;
+    font-family: Arial, sans-serif;
+    color: #26352b;
+}
+
+.academic-layout {
+    display: flex;
+    min-height: 100vh;
+}
 
 
-    
+/* SOL MENÜ */
+
+.academic-sidebar {
+    width: 245px;
+    background: #ffffff;
+    border-right: 1px solid #d9e6dc;
+    padding: 25px 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.academic-logo {
+    color: #176b3a;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 15px 30px;
+}
+
+
+/* MENÜ BUTONLARI */
+
+.sidebar-button {
+    border: none;
+    background: transparent;
+    color: #405448;
+    text-align: left;
+    padding: 14px 18px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.sidebar-button:hover {
+    background: #edf6ef;
+    color: #176b3a;
+}
+
+.sidebar-button.active {
+    background: #dff0e4;
+    color: #176b3a;
+    font-weight: bold;
+}
+
+
+/* ÇIKIŞ */
+
+.sidebar-logout {
+    margin-top: auto;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: #526158;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.sidebar-logout:hover {
+    background: #edf6ef;
+    color: #176b3a;
+}
+
+
+/* ANA ALAN */
+
+.academic-main {
+    flex: 1;
+    padding: 30px;
+}
+
+
+/* ÜST BAR */
+
+.academic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px 25px;
+    border-bottom: 2px solid #d9e6dc;
+    border-radius: 10px 10px 0 0;
+}
+
+.academic-header h1 {
+    margin: 0 0 5px;
+    color: #176b3a;
+    font-size: 24px;
+}
+
+.application-count {
+    color: #718078;
+    font-size: 14px;
+}
+
+
+/* ÜST BUTONLAR */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.refresh-button,
+.page-button {
+    border: none;
+    background: transparent;
+    color: #176b3a;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.refresh-button:hover,
+.page-button:hover {
+    background: #e6f3e9;
+}
+
+.page-number {
+    font-size: 14px;
+    color: #647269;
+}
+
+
+/* BAŞVURU LİSTESİ */
+
+.application-list {
+    margin-top: 2px;
+    background: #ffffff;
+    border: 1px solid #d9e6dc;
+    border-top: none;
+}
+
+
+/* BAŞVURU SATIRI */
+
+.application-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 100px;
+    align-items: center;
+    gap: 20px;
+
+    padding: 17px 20px;
+
+    text-decoration: none;
+    color: #35443b;
+
+    border-bottom: 1px solid #edf1ee;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+.application-row:last-child {
+    border-bottom: none;
+}
+
+.application-row:hover {
+    background: #f1f8f3;
+}
+
+
+/* OKUNMAMIŞ BAŞVURU */
+
+.application-row.unread {
+    font-weight: bold;
+    color: #1d3025;
+}
+
+
+/* ÖĞRENCİ ADI */
+
+.application-name {
+    color: #176b3a;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* BAŞVURU KONUSU */
+
+.application-subject {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* TARİH */
+
+.application-date {
+    text-align: right;
+    white-space: nowrap;
+    color: #68766e;
+}
+
+
+/* MOBİL UYUMLULUK */
+
+@media (max-width: 800px) {
+
+    .academic-sidebar {
+        width: 190px;
+    }
+
+    .academic-main {
+        padding: 15px;
+    }
+
+    .application-row {
+        grid-template-columns: 1fr 100px;
+    }
+
+    .application-subject {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .academic-layout {
+        flex-direction: column;
+    }
+
+    .academic-sidebar {
+        width: auto;
+    }
+
+    .academic-main {
+        padding: 10px;
+    }
+
+}
