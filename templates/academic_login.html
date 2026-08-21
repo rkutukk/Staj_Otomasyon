@@ -33,9 +33,16 @@
         <h2>
             Staj Başvuru Sistemi / Akademik Personel
         </h2>
+        
+        {% if error %}
 
+            <div class="error-message">
+                {{ error }}
+            </div>
 
-        <form method="POST" action="{{ url_for('academic_home') }}">
+        {% endif %}
+
+        <form method="POST">
 
             <input
                 type="text"

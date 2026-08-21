@@ -32,21 +32,33 @@
                 Staj Başvuru Sistemi
             </div>
 
-            <button class="sidebar-button active">
+            <a
+                href="{{ url_for('academic_home') }}"
+                class="sidebar-button {%if not request.args.get('status')%}active{%endif%}"
+            >
                 📥 Tüm Başvurular
-            </button>
+            </a>
 
-            <button class="sidebar-button">
+            <a
+                href="{{ url_for('academic_home', status='Bekliyor') }}"
+                class="sidebar-button {% if request.args.get('status') == 'Bekliyor' %}active{% endif %}"
+            >
                 ⏳ Onay Bekleyenler
-            </button>
+            </a>
 
-            <button class="sidebar-button">
+            <a 
+                href="{{ url_for('academic_home', status='Onaylandı') }}"
+                class="sidebar-button {% if request.args.get('status') == 'Onaylandı' %}active{% endif %}"
+            >
                 ✓ Onaylananlar
-            </button>
+            </a>
 
-            <button class="sidebar-button">
+            <a 
+                href="{{ url_for('academic_home', status='Reddedildi') }}"
+                class="sidebar-button {% if request.args.get('status') == 'Reddedildi' %}active{% endif %}"
+                >
                 ✕ Reddedilenler
-            </button>
+            </a>
 
 
             <a
@@ -104,39 +116,356 @@
 
             <!-- BAŞVURU LİSTESİ -->
 
-            <section class="application-list">
+             {% if selected_application %}
 
- {% for application in applications %}
+<section class="application-detail">
 
-        <a href="#" class="application-row {% if application['is_read'] == 0 %}unread{% endif %}">
+    <div class="detail-header">
+        <h2>Staj Başvuru Detayları</h2>
 
-            <div class="application-name">
-                {{ application['name'] }}
+        <span class="detail-status">
+            {{ selected_application['status'] }}
+        </span>
+    </div>
+
+    <div class="detail-section">
+
+        <h3>Öğrenci Bilgileri</h3>
+
+        <div class="detail-grid">
+
+            <div>
+                <strong>Ad Soyad</strong>
+                <span>{{ selected_application['name'] }}</span>
             </div>
 
-            <div class="application-subject">
-                Staj Başlangıç Başvurusu
+            <div>
+                <strong>Öğrenci No</strong>
+                <span>{{ selected_application['student_number'] }}</span>
             </div>
 
-            <div class="application-date">
-                {% if application['submitted_at'] %}
-                    {{ application['submitted_at'][:16] }}
-                {% else %}
-                    Tarih yok
-                {% endif %}
+            <div>
+                <strong>TC Kimlik No</strong>
+                <span>{{ selected_application['tc_no'] }}</span>
             </div>
 
-        </a>
+            <div>
+                <strong>Doğum Tarihi</strong>
+                <span>{{ selected_application['birth_date'] }}</span>
+            </div>
 
-    {% endfor %}
-
-
-            </section>
-
-        </main>
+        </div>
 
     </div>
 
+
+    <div class="detail-section">
+
+        <h3>Staj Bilgileri</h3>
+
+        <div class="detail-grid">
+
+            <div>
+                <strong>Staj Başlangıç</strong>
+                <span>{{ selected_application['start_date'] }}</span>
+            </div>
+
+            <div>
+                <strong>Staj Bitiş</strong>
+                <span>{{ selected_application['end_date'] }}</span>
+            </div>
+
+            <div>
+                <strong>Sigorta Başlangıç</strong>
+                <span>{{ selected_application['insurance_start'] }}</span>
+            </div>
+
+            <div>
+                <strong>Staj Gün Sayısı</strong>
+                <span>{{ selected_application['day_count'] }}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-section">
+
+        <h3>Firma Bilgileri</h3>
+
+        <div class="detail-grid">
+
+            <div>
+                <strong>Firma Adı</strong>
+                <span>{{ selected_application['company_name'] }}</span>
+            </div>
+
+            <div>
+                <strong>Firma Telefonu</strong>
+                <span>{{ selected_application['company_phone'] }}</span>
+            </div>
+
+            <div>
+                <strong>Vergi Numarası</strong>
+                <span>{{ selected_application['tax_number'] }}</span>
+            </div>
+
+            <div>
+                <strong>Çalışan Sayısı</strong>
+                <span>{{ selected_application['employee_count'] }}</span>
+            </div>
+
+        </div>
+
+        <div class="detail-full">
+
+            <strong>Firma Adresi</strong>
+
+            <span>
+                {{ selected_application['company_address'] }}
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-section">
+
+        <h3>Başvuru Bilgileri</h3>
+
+        <div class="detail-grid">
+
+            <div>
+                <strong>Yurt Dışı</strong>
+                <span>{{ selected_application['abroad'] }}</span>
+            </div>
+
+            <div>
+                <strong>Ücret</strong>
+                <span>{{ selected_application['salary'] }}</span>
+            </div>
+
+            <div>
+                <strong>IBAN</strong>
+                <span>{{ selected_application['iban'] }}</span>
+            </div>
+
+            <div>
+                <strong>Devlet Desteği</strong>
+                <span>{{ selected_application['government_support'] }}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-section">
+
+        <h3>EK-16</h3>
+
+        {% if selected_application['ek16'] %}
+
+            <p>
+                EK-16 dosyası sisteme yüklenmiş.
+            </p>
+
+            <a 
+                href="{{ url_for('uploaded_file', filename=selected_application['ek16']) }}"
+                target="_blank"
+                class="file-button"
+            >
+                📄 EK-16 Dosyasını Görüntüle
+            </a>
+
+        {% else %}
+
+            <p>
+
+                EK-16 dosyası bulunmuyor.
+            </p>
+
+        {%endif%}    
+
+    {% if selected_application['approved_file'] %}
+
+            <div class="detail-section">
+
+                <h3>Onaylı Dosya</h3>
+
+                <p>
+                    Akademik personel tarafından yüklenen onaylı dosya:
+                </p>
+
+                <a
+                    href="{{ url_for('uploaded_file', filename=selected_application['approved_file']) }}"
+                    target="_blank"
+                    class="file-button"
+                >
+                    📄 Onaylı Dosyayı Görüntüle
+                </a>
+               
+            </div>
+        {%endif%}    
+
+        {% if selected_application['rejection_reason'] %}
+
+            <div class="detail-section">
+
+                <h3>Red Nedeni</h3>
+
+                <p>
+                    {{ selected_application['rejection_reason'] }}
+                </p>
+
+            </div>
+
+    {% endif %}
+
+    </div>
+            <div class="application-actions">
+
+        <button
+            type="button"
+            class="approve-button"
+            onclick="showApproveForm()"
+        >
+            ✓ Onayla
+        </button>
+
+        <button
+            type="button"
+            class="reject-button"
+            onclick="showRejectForm()"
+        >
+            ✕ Reddet
+        </button>
+
+    </div>
+
+    <div
+    id="approve-form"
+    class="decision-form"
+    style="display: none;"
+>
+
+    <h3>Başvuruyu Onayla</h3>
+
+    <p>
+        Başvuruyu onaylamak için imzalı dosyayı yükleyiniz.
+    </p>
+
+    <form
+        action="{{ url_for('academic_home', application_id=selected_application['id']) }}"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+    <input
+        type="file"
+        id="approved-file"
+        name="approved_file"
+        required
+    >
+
+    <button
+        type="submit"
+        class="approve-submit-button"
+    >
+        Dosyayı Yükle ve Onayla
+    </button>
+    </form>
+
+</div>
+    
+    <div
+    id="reject-form"
+    class="decision-form"
+    style="display: none;"
+>
+
+    <h3>Başvuruyu Reddet</h3>
+
+    <p>
+        Başvuruyu reddetme nedenini açıklayınız.
+    </p>
+
+    <form
+        action="{{ url_for('academic_home', application_id=selected_application['id']) }}"
+        method="POST"
+    >
+
+        <textarea
+            name="rejection_reason"
+            id="rejection-reason"
+            rows="5"
+            placeholder="Reddetme nedenini yazınız..."
+            required
+        ></textarea>
+
+        <button
+            type="submit"
+            class="reject-submit-button"
+        >
+            Başvuruyu Reddet
+        </button>
+
+    </form>
+
+</div>
+
+</section>
+{% else %}
+        <section class="application-list">
+
+            {% for application in applications %}
+
+                <a href="{{ url_for('academic_home', application_id=application['id']) }}"
+                    class="application-row {% if application['is_read'] == 0 %}unread{% endif %}">
+
+                    <div class="application-name">
+                        {{ application['name'] }}
+                    </div>
+
+                    <div class="application-subject">
+                        Staj Başlangıç Başvurusu
+                    </div>
+
+                    <div class="application-date">
+                        {% if application['submitted_at'] %}
+                         {{ application['submitted_at'][:16] }}
+                        {% else %}
+                            Tarih yok
+                        {% endif %}
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </section>
+      {%endif%}
+        </main>
+
+    </div>
+        <script>
+
+function showApproveForm() {
+
+    document.getElementById("approve-form").style.display = "block";
+
+}
+
+function showRejectForm() {
+
+    document.getElementById("reject-form").style.display = "block";
+
+}
+
+
+</script>
 </body>
 
 </html>

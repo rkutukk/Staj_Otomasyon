@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,send_from_directory
 from werkzeug.utils import secure_filename
 import os
 import sqlite3
@@ -40,6 +40,7 @@ def init_db():
             
         )
     ''')
+    
     
 
     conn.commit()
@@ -103,13 +104,55 @@ def add_submitted_at_column():
 
     conn.close()
 
+def add_rejection_reason_column():
+    conn = sqlite3.connect('staj.db')
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(
+            "ALTER TABLE applications ADD COLUMN rejection_reason TEXT"
+        )
+        conn.commit()
+        print("rejection_reason sütunu eklendi.")
+    except sqlite3.OperationalError:
+        print("rejection_reason sütunu zaten mevcut.")
+
+    conn.close()
+
+def add_approved_file_column():
+    conn = sqlite3.connect('staj.db')
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(
+            "ALTER TABLE applications ADD COLUMN approved_file TEXT"
+        )
+        conn.commit()
+        print("approved_file sütunu eklendi.")
+    except sqlite3.OperationalError:
+        print("approved_file sütunu zaten mevcut.")
+
+    conn.close()
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
-@app.route("/academic-login")
+@app.route("/academic-login",methods=["GET","POST"])
 def academic_login():
+    if request.method == "POST":
+
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if username == "akademik" and password == "1234":
+            return redirect(url_for("academic_home"))
+
+        return render_template(
+            "academic_login.html",
+            error="Kullanıcı adı veya şifre hatalı."
+        )
     return render_template("academic_login.html")
 
 @app.route('/academic-home', methods=['GET', 'POST'])
@@ -117,22 +160,92 @@ def academic_home():
 
     conn = sqlite3.connect('staj.db')
     conn.row_factory = sqlite3.Row
+    selected_application = None
+    application_id = request.args.get('application_id')
+
+    if request.method == 'POST':
+
+        approved_file = request.files.get('approved_file')
+        rejection_reason = request.form.get('rejection_reason')
+
+        if approved_file and approved_file.filename:
+
+        
+            filename = secure_filename(approved_file.filename)
+
+            file_path = os.path.join(
+            app.config['UPLOAD_FOLDER'],
+            filename
+            )
+
+            approved_file.save(file_path)
+
+            conn.execute(
+            """
+            UPDATE applications 
+            SET status = ?,approved_file=? 
+            WHERE id = ?
+            """,
+            ("Onaylandı", filename,application_id)
+            )
+
+            conn.commit()
+
+   
+
+        elif rejection_reason:
+
+            conn.execute(
+                """
+                UPDATE applications
+                SET status = ?, rejection_reason = ?
+                WHERE id = ?
+                """,
+                ("Reddedildi", rejection_reason, application_id)
+            )
+
+            conn.commit()
+
+
+    
+
+    if application_id:
+            selected_application = conn.execute(
+        "SELECT * FROM applications WHERE id = ?",
+        (application_id,)
+    ).fetchone()
+    status = request.args.get('status')
 
     cursor = conn.cursor()
 
-    cursor.execute("""
+    if status:
+        cursor.execute("""
         SELECT *
         FROM applications
+        WHERE status = ?
         ORDER BY id DESC
-    """)
+    """, (status,))
+    else:
+        cursor.execute("""
+            SELECT *
+            FROM applications
+            ORDER BY id DESC
+        """)
 
     applications = cursor.fetchall()
-
     conn.close()
 
     return render_template(
         'academic_home.html',
-        applications=applications
+        applications=applications,
+        selected_application=selected_application
+    )
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(
+        app.config['UPLOAD_FOLDER'],
+        filename
     )
 
 @app.route("/student-login", methods=["GET", "POST"])
@@ -252,7 +365,12 @@ def success():
 
 if __name__ == "__main__": 
     init_db()
-    
+    add_ek16_column()
+    add_is_read_column()
+    add_status_column()
+    add_submitted_at_column()
+    add_rejection_reason_column()
+    add_approved_file_column()
     app.run(debug=True)
 
    
